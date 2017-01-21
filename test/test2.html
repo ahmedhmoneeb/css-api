@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <script>
+            window.addEventListener("load",function (){getContent("//192.168.43.91/gproject/getFilesList.php?user_id=6");})
+        
+            function getContent(URL)
+            {    
+                try
+                {
+                    ob=new XMLHttpRequest();
+                    ob.open("GET",URL,true);
+                    ob.addEventListener("readystatechange",processRequest);
+                    ob.send();
+                }
+                catch(exception)
+                {
+                    alert("Request Failed")
+                }08
+            }
+            function processRequest()
+            {
+                if(ob.readyState==4)
+                {
+                    arr = JSON.parse(ob.responseText);
+                    for(i=0;i<arr[0].length;i++)
+                    {
+                    uli=document.createElement("li");
+                    uli.appendChild(arr[0][i]);
+                    document.getElementById("ul1").appendChild(uli);
+                    }
+                }
+            }
+        
+        </script>
+    </head>
+    <body>
+            <ul id="ul1" >
+            </ul>
+    </body>
+</html>
