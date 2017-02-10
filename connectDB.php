@@ -1,5 +1,5 @@
  <?php
-$servername = "192.168.1.77";
+$servername = "localhost";
 $username = "root";
 $password = "root";
 $mysql_database = "CloudSoundSystem";

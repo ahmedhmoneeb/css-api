@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <script>
+            window.addEventListener("load",function (){getContent("//localhost/gproject/getFilesList.php?user_id=1");});
+            var arr;
+            
+            function playFile(fileName)
+            {
+                url = "//localhost/gproject/play.php?SpeakerID=1&FileName=" + fileName.target.fileName;
+                window.alert(url);
+                try
+				    {
+				    	ob=new XMLHttpRequest();
+				    	ob.open("GET",url,true);
+				    	ob.send();
+				    }
+			    catch(exception)
+			    	{
+				    	alert("Request Failed")
+				    }
+			    	
+           }
+            function getContent(URL)
+            {    
+                try
+                {
+                    ob=new XMLHttpRequest();
+                    ob.open("GET",URL,true);
+                    ob.addEventListener("readystatechange",processRequest);
+                    ob.send();
+                }
+                catch(exception)
+                {
+                    alert("Request Failed")
+                }
+            }
+            function processRequest()
+            {
+                if(ob.readyState==4)
+                {
+                    arr = JSON.parse(ob.responseText);
+                    list = document.createElement('ul');
+                    for(i=0;i<arr.files_names.length;i++)
+                    {
+                        item = document.createElement('li');
+                        item.appendChild(document.createTextNode(arr.files_names[i]));
+                        item.addEventListener("click",playFile,false);
+                        item.fileName = arr.files_names[i];
+
+                        list.appendChild(item);
+                    }
+document.getElementById('filesList').appendChild(list);
+
+                }
+            }
+        
+        </script>
+    </head>
+    <body>
+            <div id="filesList" >
+            </div>
+    </body>
+</html>
