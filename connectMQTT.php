@@ -1,4 +1,4 @@
  <?php
-$servername = "192.168.1.77";
+$servername = "localhost";
 $mqtt = new phpMQTT($servername, 1883, "phpMQTT Pub Example");
 ?> 
